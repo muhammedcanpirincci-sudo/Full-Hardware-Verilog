@@ -1,0 +1,25 @@
+module control_unit(clk, F, D, E);
+
+input clk;
+output F, D, E;
+reg [2:0] state;
+
+initial state = 3'b100;
+
+always @(state or clk )
+begin 
+	if((clk == 1) && (state == 3'b100))
+		state <= 3'b010;	
+	else if(state == 3'b010)
+		#30 state <= 3'b001;
+	else if(state == 3'b001)
+		#30 state <= 3'b100;
+	else
+		#30 state <= 3'b100;
+end
+
+assign F = state[2];
+assign D = state[1];
+assign E = state[0];
+
+endmodule

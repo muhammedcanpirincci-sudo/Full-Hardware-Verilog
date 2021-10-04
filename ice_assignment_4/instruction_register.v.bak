@@ -1,0 +1,19 @@
+module instruction_register(clk,instruction, D, opCode, b);
+
+input [10:0] instruction;
+input D, clk;
+
+output reg [2:0] opCode;
+output reg [7:0] b;
+
+always@(posedge D)
+	begin
+		if(clk == 1)
+		begin
+				opCode = instruction[10:8];
+				b = instruction[7:0];
+		end
+	end
+
+
+endmodule
